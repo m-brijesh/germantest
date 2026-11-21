@@ -65,6 +65,7 @@ dialog::backdrop{background:rgba(0,0,0,.5)}
     <li>Choose answers, move freely between questions, and submit at the end</li>
     <li>After submitting you’ll see your score and an explanation for every wrong answer</li>
     <li>No negative marking. If time runs out, the exam is submitted automatically</li>
+    <li>Score at least <b>65%</b> (46 out of 70 points) to qualify for the next chapters</li>
   </ul>
   <label for="nameIn" style="font-weight:600;display:block;margin-bottom:6px">Your name</label>
   <input id="nameIn" type="text" maxlength="60" placeholder="Enter your full name" autocomplete="name">
@@ -119,7 +120,7 @@ dialog::backdrop{background:rgba(0,0,0,.5)}
 </dialog>
 
 <script>
-var Q=[
+var QB=[
 {q:"How many letters are in the basic German alphabet (without Ä, Ö, Ü, ß)?",o:["24","26","29","30"],a:1,e:"The German alphabet has the same 26 letters as English. In addition there are three umlauts (Ä, Ö, Ü) and the letter ß."},
 {q:"Which letters are the German umlauts?",o:["É, È, Ê","Å, Ø, Æ","Ä, Ö, Ü","Ñ, Ç, Ã"],a:2,e:"The umlauts are Ä, Ö and Ü. The others belong to French, Scandinavian or Spanish/Portuguese."},
 {q:"What is the letter ß called?",o:["Beta","Eszett (scharfes S)","Doppel-W","Sigma"],a:1,e:"ß is called “Eszett” or “scharfes S”. It is pronounced like a sharp “s”, as in Straße."},
@@ -145,23 +146,26 @@ var Q=[
 {q:"In an online dictionary, the letter “f” next to a noun means:",o:["The noun is plural","The noun is feminine, so it uses “die”","The noun is formal","The noun is a verb"],a:1,e:"Dictionaries mark gender as m (der), f (die), n (das) and often pl for plural. Always learn a noun together with its article."},
 {q:"What does “Was ist das?” mean?",o:["Who is that?","Where is that?","What is that?","When is that?"],a:2,e:"Was = what, ist = is, das = that/this. Compare with Wer (who), Wo (where), Wann (when)."},
 {q:"Which day comes right after Mittwoch (Wednesday)?",o:["Dienstag","Freitag","Samstag","Donnerstag"],a:3,e:"Order: Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag, Sonntag."},
-{d:"Easy",q:"Which article goes with Mann (man)? ___ Mann",o:["die","der","das","ein"],a:1,e:"Male people are usually masculine: der Mann."},
-{d:"Easy",q:"Which article goes with Frau (woman)? ___ Frau",o:["das","der","die","ein"],a:2,e:"Female people are usually feminine: die Frau."},
-{d:"Easy",q:"Which article goes with Kind (child)? ___ Kind",o:["das","die","der","eine"],a:0,e:"Kind is neuter: das Kind. Gender is not always logical, so learn the article with the noun."},
-{d:"Moderate",q:"Days, months and seasons are all masculine. Which article goes with Montag? ___ Montag",o:["die","das","der","eine"],a:2,e:"Days of the week, months and seasons take der: der Montag, der Januar, der Sommer."},
-{d:"Moderate",q:"Which article goes with Freundlichkeit (friendliness)? ___ Freundlichkeit",o:["der","die","das","ein"],a:1,e:"Nouns ending in -keit, -heit and -ung are always feminine: die Freundlichkeit, die Freiheit, die Zeitung."},
-{d:"Moderate",q:"Which article goes with Museum? ___ Museum",o:["das","der","die","ein"],a:0,e:"Nouns ending in -um are usually neuter: das Museum, das Zentrum, das Datum."},
-{d:"Hard",q:"Which group has the correct article for every noun?",o:["die Frühling, die Freiheit, das Mädchen","der Frühling, der Freiheit, das Mädchen","der Frühling, die Freiheit, die Mädchen","der Frühling, die Freiheit, das Mädchen"],a:3,e:"Seasons are masculine (der Frühling), -heit is feminine (die Freiheit), and -chen is neuter (das Mädchen)."},
-{d:"Hard",q:"Most nouns ending in -e are feminine. Which one is an exception and is masculine?",o:["Lampe","Tasche","Name","Blume"],a:2,e:"der Name is an exception (like der Junge and der Käse). Die Lampe, die Tasche and die Blume follow the -e = feminine rule."},
-{d:"Hard",q:"Haus (das) + Tür (die) = Haustür. Which article does the compound noun take? ___ Haustür",o:["die","das","der","eine"],a:0,e:"A compound noun takes the article of its LAST part: Tür is feminine, so die Haustür."},
-{d:"Hard",q:"Many nouns ending in -er are masculine (der Lehrer, der Computer, der Fahrer). Which noun ending in -er is neuter?",o:["Lehrer","Wetter","Computer","Fahrer"],a:1,e:"das Wetter (weather) is neuter. Lehrer, Computer and Fahrer are all masculine (der)."}
+{d:"",q:"Which article goes with Mann (man)? ___ Mann",o:["die","der","das","ein"],a:1,e:"Male people are usually masculine: der Mann."},
+{d:"",q:"Which article goes with Frau (woman)? ___ Frau",o:["das","der","die","ein"],a:2,e:"Female people are usually feminine: die Frau."},
+{d:"",q:"Which article goes with Kind (child)? ___ Kind",o:["das","die","der","eine"],a:0,e:"Kind is neuter: das Kind. Gender is not always logical, so learn the article with the noun."},
+{d:"",q:"Days, months and seasons are all masculine. Which article goes with Montag? ___ Montag",o:["die","das","der","eine"],a:2,e:"Days of the week, months and seasons take der: der Montag, der Januar, der Sommer."},
+{d:"",q:"Which article goes with Freundlichkeit (friendliness)? ___ Freundlichkeit",o:["der","die","das","ein"],a:1,e:"Nouns ending in -keit, -heit and -ung are always feminine: die Freundlichkeit, die Freiheit, die Zeitung."},
+{d:"",q:"Which article goes with Museum? ___ Museum",o:["das","der","die","ein"],a:0,e:"Nouns ending in -um are usually neuter: das Museum, das Zentrum, das Datum."},
+{d:"",q:"Which group has the correct article for every noun?",o:["die Frühling, die Freiheit, das Mädchen","der Frühling, der Freiheit, das Mädchen","der Frühling, die Freiheit, die Mädchen","der Frühling, die Freiheit, das Mädchen"],a:3,e:"Seasons are masculine (der Frühling), -heit is feminine (die Freiheit), and -chen is neuter (das Mädchen)."},
+{d:"",q:"Most nouns ending in -e are feminine. Which one is an exception and is masculine?",o:["Lampe","Tasche","Name","Blume"],a:2,e:"der Name is an exception (like der Junge and der Käse). Die Lampe, die Tasche and die Blume follow the -e = feminine rule."},
+{d:"",q:"Haus (das) + Tür (die) = Haustür. Which article does the compound noun take? ___ Haustür",o:["die","das","der","eine"],a:0,e:"A compound noun takes the article of its LAST part: Tür is feminine, so die Haustür."},
+{d:"",q:"Many nouns ending in -er are masculine (der Lehrer, der Computer, der Fahrer). Which noun ending in -er is neuter?",o:["Lehrer","Wetter","Computer","Fahrer"],a:1,e:"das Wetter (weather) is neuter. Lehrer, Computer and Fahrer are all masculine (der)."}
 ];
+var Q=QB;
+function sh(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function buildExam(){return sh(QB).map(function(q){var idx=sh(q.o.map(function(_,i){return i}));return {q:q.q,d:q.d,e:q.e,o:idx.map(function(i){return q.o[i]}),a:idx.indexOf(q.a)}})}
 var LET=["A","B","C","D"],TOTAL=25*60;
 var ans,cur,left,tid,filter;
 var $=function(i){return document.getElementById(i)};
 function show(id){["start","exam","result"].forEach(function(s){$(s).classList.toggle("hidden",s!==id)});window.scrollTo(0,0)}
 
-function start(){ans=new Array(Q.length).fill(-1);cur=0;left=TOTAL;
+function start(){Q=buildExam();ans=new Array(Q.length).fill(-1);cur=0;left=TOTAL;
   show("exam");render();tick();clearInterval(tid);tid=setInterval(tick,1000)}
 function tick(){
   var m=Math.floor(left/60),s=left%60;
