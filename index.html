@@ -49,6 +49,9 @@ button:disabled{opacity:.45;cursor:default}
 input[type=text]{font:inherit;width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx)}
 input[type=text]:focus{outline:2px solid var(--pri);border-color:var(--pri)}
 dialog{border:1px solid var(--bd);border-radius:14px;background:var(--card);color:var(--tx);max-width:400px}
+.tp{margin:14px 0}.tp .row{display:flex;justify-content:space-between;gap:8px;font-weight:600}
+.tp .meter{height:8px;border-radius:4px;background:var(--bd);margin:6px 0;overflow:hidden}.tp .meter i{display:block;height:100%}
+.tp .tip{font-size:.92rem;color:var(--mut)}
 dialog::backdrop{background:rgba(0,0,0,.5)}
 </style>
 </head>
@@ -65,7 +68,6 @@ dialog::backdrop{background:rgba(0,0,0,.5)}
     <li>Choose answers, move freely between questions, and submit at the end</li>
     <li>After submitting you’ll see your score and an explanation for every wrong answer</li>
     <li>No negative marking. If time runs out, the exam is submitted automatically</li>
-    <li>Score at least <b>65%</b> (46 out of 70 points) to qualify for the next chapters</li>
   </ul>
   <label for="nameIn" style="font-weight:600;display:block;margin-bottom:6px">Your name</label>
   <input id="nameIn" type="text" maxlength="60" placeholder="Enter your full name" autocomplete="name">
@@ -102,6 +104,7 @@ dialog::backdrop{background:rgba(0,0,0,.5)}
     <div class="stats mut"><span id="s1"></span><span id="s2"></span><span id="s3"></span><span id="s4"></span></div>
     <button class="p" id="retry" style="margin-top:16px">Retake Exam</button>
   </div>
+  <div class="card" id="improve"></div>
   <div class="filters">
     <button data-f="wrong" class="on">Wrong / unanswered</button>
     <button data-f="all">All questions</button>
@@ -157,9 +160,14 @@ var QB=[
 {d:"",q:"Haus (das) + Tür (die) = Haustür. Which article does the compound noun take? ___ Haustür",o:["die","das","der","eine"],a:0,e:"A compound noun takes the article of its LAST part: Tür is feminine, so die Haustür."},
 {d:"",q:"Many nouns ending in -er are masculine (der Lehrer, der Computer, der Fahrer). Which noun ending in -er is neuter?",o:["Lehrer","Wetter","Computer","Fahrer"],a:1,e:"das Wetter (weather) is neuter. Lehrer, Computer and Fahrer are all masculine (der)."}
 ];
+var TN=["Alphabet & letters","Sounds & pronunciation","Greetings & farewells","Basic phrases (thanks, please)","Introducing yourself","German articles (der, die, das, ein, eine)","Using an online dictionary","Asking about things","Days of the week","Identifying der, die, das"];
+var TP=["Revisit the 26 letters plus Ä, Ö, Ü and ß, and practise saying the alphabet aloud.","Practise the key sounds: w = v, v = f, ei = eye, ie = ee, sch = sh, and the soft ch in ich. Listen and repeat example words.","Review Guten Morgen / Tag / Abend / Gute Nacht, and formal (Auf Wiedersehen) vs informal (Tschüss) goodbyes.","Practise Danke, Vielen Dank, Bitte and Bitte schön, and when each one is used.","Practise Ich heiße … / Ich bin … and Wie geht’s? by writing a short self-introduction.","Memorise der (masculine), die (feminine), das (neuter), die (plural), and ein / eine for the indefinite article.","Learn to read the m / f / n labels in an online dictionary, and always note the article together with each noun.","Practise the question words Was, Wer, Wo, Wann and the phrase Was ist das?","Learn the week in order, Montag to Sonntag, and remember that days are masculine (der).","Learn the typical endings: -ung, -heit, -keit = die; -chen, -um = das; days, months and seasons = der. Compound nouns take the article of their last word. Remember exceptions like der Name and das Wetter."];
+var TC=[0,0,0,1,1,1,1,1,1,2,2,2,2,3,3,4,4,5,5,5,9,9,6,7,8,9,9,9,9,9,9,9,9,9,9];
+var TIPS={};TN.forEach(function(n,i){TIPS[n]=TP[i]});
+QB.forEach(function(q,i){q.t=TN[TC[i]]});
 var Q=QB;
 function sh(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
-function buildExam(){return sh(QB).map(function(q){var idx=sh(q.o.map(function(_,i){return i}));return {q:q.q,d:q.d,e:q.e,o:idx.map(function(i){return q.o[i]}),a:idx.indexOf(q.a)}})}
+function buildExam(){return sh(QB).map(function(q){var idx=sh(q.o.map(function(_,i){return i}));return {q:q.q,d:q.d,t:q.t,e:q.e,o:idx.map(function(i){return q.o[i]}),a:idx.indexOf(q.a)}})}
 var LET=["A","B","C","D"],TOTAL=25*60;
 var ans,cur,left,tid,filter;
 var $=function(i){return document.getElementById(i)};
@@ -216,8 +224,31 @@ function finish(){
   $("rtitle").textContent="Result for "+uname;
   $("msg").textContent=okp?"🎉 Congratulations, "+uname+"! You are qualified for the next chapters.":"You need to prepare more for the actual exam, "+uname+". Review the explanations below and try again.";
   $("msg").style.color=okp?"var(--ok)":"var(--bad)";
+  renderImprove();
   $("s1").textContent="✓ Correct: "+ok;$("s2").textContent="✗ Wrong: "+no;$("s3").textContent="– Unanswered: "+un;$("s4").textContent="Percentage: "+pc+"%";
   filter="wrong";setF();show("result");
+}
+function renderImprove(){
+  var st={};
+  Q.forEach(function(q,i){var s=st[q.t]||(st[q.t]={n:q.t,c:0,t:0});s.t++;if(ans[i]===q.a)s.c++});
+  var arr=Object.keys(st).map(function(k){return st[k]}).sort(function(a,b){return a.c/a.t-b.c/b.t});
+  var box=$("improve");box.innerHTML="";
+  var h=document.createElement("h2");h.textContent="Where to improve";box.appendChild(h);
+  var weak=arr.filter(function(s){return s.c/s.t<0.7});
+  var p=document.createElement("p");p.className="mut";
+  p.textContent=weak.length?"Focus first on: "+weak.slice(0,3).map(function(s){return s.n}).join(", ")+".":"Great job – every topic is at 70% or above. Keep revising to stay sharp!";
+  box.appendChild(p);
+  arr.forEach(function(s){
+    var r=s.c/s.t,pc=Math.round(r*100),col=r>=0.7?"var(--ok)":r>=0.4?"var(--warn)":"var(--bad)";
+    var d=document.createElement("div");d.className="tp";
+    var row=document.createElement("div");row.className="row";
+    var a=document.createElement("span");a.textContent=s.n;
+    var b=document.createElement("span");b.textContent=s.c+"/"+s.t+" · "+pc+"%";b.style.color=col;
+    row.appendChild(a);row.appendChild(b);
+    var m=document.createElement("div");m.className="meter";var i=document.createElement("i");i.style.width=pc+"%";i.style.background=col;m.appendChild(i);
+    d.appendChild(row);d.appendChild(m);
+    if(r<0.7){var t=document.createElement("div");t.className="tip";t.textContent="💡 "+TIPS[s.n];d.appendChild(t)}
+    box.appendChild(d)});
 }
 function setF(){
   document.querySelectorAll(".filters button").forEach(function(b){b.classList.toggle("on",b.dataset.f===filter)});
