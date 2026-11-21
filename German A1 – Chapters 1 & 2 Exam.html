@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>German A1 – Chapters 1 & 2 Exam</title>
+<style>
+:root{--bg:#eef6fc;--card:#fff;--tx:#1b2733;--mut:#5d6b78;--pri:#1f6feb;--pri-tx:#fff;--bd:#cfdbe6;--ok:#17803d;--okbg:#e3f6e9;--bad:#c62828;--badbg:#fdeaea;--warn:#b45309;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101820;--card:#18232e;--tx:#e8eef4;--mut:#9aaab8;--pri:#4c8dff;--pri-tx:#06101c;--bd:#2c3b49;--ok:#5ad287;--okbg:#14301f;--bad:#ff8a80;--badbg:#3a1a1a;--warn:#fbbf24}}
+:root[data-theme="dark"]{--bg:#101820;--card:#18232e;--tx:#e8eef4;--mut:#9aaab8;--pri:#4c8dff;--pri-tx:#06101c;--bd:#2c3b49;--ok:#5ad287;--okbg:#14301f;--bad:#ff8a80;--badbg:#3a1a1a;--warn:#fbbf24}
+html{height:100%;color-scheme:light dark;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:20px;margin-bottom:14px}
+h1{font-size:1.6rem;margin:0 0 6px}h2{font-size:1.2rem;margin:0 0 10px}
+.mut{color:var(--mut)}
+.flag{height:8px;border-radius:4px;background:linear-gradient(#111 33%,#d00 33% 66%,#fc0 66%);margin-bottom:14px}
+ul.info{padding-left:20px;margin:10px 0 18px}
+button{font:inherit;cursor:pointer;border-radius:10px;border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:10px 16px}
+button.p{background:var(--pri);color:var(--pri-tx);border-color:var(--pri);font-weight:600}
+button:disabled{opacity:.45;cursor:default}
+.hidden{display:none!important}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:8px 0}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:10px}
+#timer{font-variant-numeric:tabular-nums;font-weight:700;font-size:1.2rem;padding:6px 12px;border-radius:10px;border:1px solid var(--bd);background:var(--card)}
+#timer.low{color:var(--bad);border-color:var(--bad)}
+.prog{height:6px;background:var(--bd);border-radius:3px;margin-top:8px;overflow:hidden}.prog i{display:block;height:100%;background:var(--pri);width:0}
+.q{font-size:1.1rem;font-weight:600;margin:0 0 14px}
+.opt{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;margin-bottom:8px;padding:12px 14px}
+.opt b{min-width:22px}
+.opt.sel{border-color:var(--pri);background:color-mix(in srgb,var(--pri) 14%,var(--card));outline:2px solid var(--pri)}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:14px}
+.pal{display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:6px}
+.pal button{padding:8px 0;font-size:.9rem}
+.pal button.done{background:color-mix(in srgb,var(--pri) 20%,var(--card));border-color:var(--pri)}
+.pal button.cur{outline:2px solid var(--tx)}
+.score{text-align:center}.score .big{font-size:3rem;font-weight:800;line-height:1.1}
+.stats{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:10px}
+.rev{border-left:5px solid var(--bd)}
+.rev.ok{border-left-color:var(--ok)}.rev.no{border-left-color:var(--bad)}
+.tag{font-size:.8rem;font-weight:700;padding:2px 8px;border-radius:8px}
+.tag.ok{background:var(--okbg);color:var(--ok)}.tag.no{background:var(--badbg);color:var(--bad)}
+.ans{padding:8px 10px;border-radius:8px;margin:6px 0;font-size:.95rem}
+.ans.ok{background:var(--okbg);color:var(--ok)}.ans.no{background:var(--badbg);color:var(--bad)}
+.exp{margin-top:8px;padding:10px;border-radius:8px;background:color-mix(in srgb,var(--pri) 10%,var(--card));font-size:.95rem}
+.filters{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.filters button.on{background:var(--pri);color:var(--pri-tx);border-color:var(--pri)}
+input[type=text]{font:inherit;width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx)}
+input[type=text]:focus{outline:2px solid var(--pri);border-color:var(--pri)}
+dialog{border:1px solid var(--bd);border-radius:14px;background:var(--card);color:var(--tx);max-width:400px}
+dialog::backdrop{background:rgba(0,0,0,.5)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<section id="start" class="card">
+  <div class="flag"></div>
+  <h1>German A1 Exam</h1>
+  <p class="mut">Chapters 1 & 2 – Basics, Greetings, Articles & Everyday Phrases</p>
+  <ul class="info">
+    <li><b>35</b> multiple-choice questions, <b>2 points</b> each (total <b>70 points</b>)</li>
+    <li>Time limit: <b>25 minutes</b> – the timer starts when you press Start</li>
+    <li>Choose answers, move freely between questions, and submit at the end</li>
+    <li>After submitting you’ll see your score and an explanation for every wrong answer</li>
+    <li>No negative marking. If time runs out, the exam is submitted automatically</li>
+    <li>Score at least <b>65%</b> (46 out of 70 points) to qualify for the next chapters</li>
+  </ul>
+  <label for="nameIn" style="font-weight:600;display:block;margin-bottom:6px">Your name</label>
+  <input id="nameIn" type="text" maxlength="60" placeholder="Enter your full name" autocomplete="name">
+  <p id="nameErr" class="hidden" style="color:var(--bad);margin:6px 0 0">Please enter your name to start the exam.</p>
+  <button class="p" id="startBtn" style="margin-top:14px">Start Exam</button>
+</section>
+
+<section id="exam" class="hidden">
+  <div class="top">
+    <div class="bar"><span id="count" class="mut"></span><span id="timer">25:00</span></div>
+    <div class="prog"><i id="pbar"></i></div>
+  </div>
+  <div class="card">
+    <p class="q" id="qtext"></p>
+    <div id="opts"></div>
+    <div class="nav">
+      <button id="prev">← Previous</button>
+      <button id="next" class="p">Next →</button>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Questions</h2>
+    <div class="pal" id="pal"></div>
+    <p class="mut" id="answered" style="margin:12px 0 0"></p>
+  </div>
+  <button class="p" id="submitBtn" style="width:100%">Submit Exam</button>
+</section>
+
+<section id="result" class="hidden">
+  <div class="card score">
+    <h1 id="rtitle">Your Result</h1>
+    <div class="big"><span id="sc">0</span> / 70</div>
+    <div id="msg" style="font-weight:600;margin-top:4px"></div>
+    <div class="stats mut"><span id="s1"></span><span id="s2"></span><span id="s3"></span><span id="s4"></span></div>
+    <button class="p" id="retry" style="margin-top:16px">Retake Exam</button>
+  </div>
+  <div class="filters">
+    <button data-f="wrong" class="on">Wrong / unanswered</button>
+    <button data-f="all">All questions</button>
+  </div>
+  <div id="review"></div>
+</section>
+
+</div>
+
+<dialog id="dlg">
+  <p id="dlgText"></p>
+  <div style="display:flex;gap:10px;justify-content:flex-end">
+    <button id="dlgNo">Go back</button>
+    <button id="dlgYes" class="p">Submit now</button>
+  </div>
+</dialog>
+
+<script>
+var Q=[
+{q:"How many letters are in the basic German alphabet (without Ä, Ö, Ü, ß)?",o:["24","26","29","30"],a:1,e:"The German alphabet has the same 26 letters as English. In addition there are three umlauts (Ä, Ö, Ü) and the letter ß."},
+{q:"Which letters are the German umlauts?",o:["É, È, Ê","Å, Ø, Æ","Ä, Ö, Ü","Ñ, Ç, Ã"],a:2,e:"The umlauts are Ä, Ö and Ü. The others belong to French, Scandinavian or Spanish/Portuguese."},
+{q:"What is the letter ß called?",o:["Beta","Eszett (scharfes S)","Doppel-W","Sigma"],a:1,e:"ß is called “Eszett” or “scharfes S”. It is pronounced like a sharp “s”, as in Straße."},
+{q:"How is the German letter W pronounced?",o:["Like English “w”","Like English “v”","Like English “f”","Like English “y”"],a:1,e:"German W sounds like English V: Wasser sounds like “vasser”."},
+{q:"How is V pronounced in the German word Vater (father)?",o:["Like “v”","Like “w”","Like “f”","Like “b”"],a:2,e:"In most German words V sounds like F: Vater is pronounced “fahter”. W is the one that sounds like “v”."},
+{q:"How is “ei” pronounced in the word nein (no)?",o:["Like “ee”","Like “ay”","Like “oy”","Like “eye”"],a:3,e:"“ei” sounds like English “eye”: nein = “nine”. Don’t confuse it with “ie”."},
+{q:"How is “ie” pronounced in the word Biene (bee)?",o:["Like “ee”","Like “eye”","Like “ie” in “pie”","Like “ay”"],a:0,e:"“ie” makes a long “ee” sound: Biene = “BEE-neh”. Remember: ie = ee, ei = eye."},
+{q:"What sound does “sch” make in Schule (school)?",o:["Like “s”","Like “k”","Like “sh”","Like “ch” in “church”"],a:2,e:"“sch” is pronounced “sh”: Schule = “SHOO-leh”."},
+{q:"How is “ch” pronounced in the word ich (I)?",o:["Like “k”","A soft hissing sound, like the “h” in “huge”","Like “ch” in “church”","Like “sh”"],a:1,e:"After e, i, ä, ö, ü, “ch” is a soft sound made at the front of the mouth, similar to “h” in “huge”."},
+{q:"What does “Guten Morgen” mean?",o:["Good evening","Good night","Good morning","Good afternoon"],a:2,e:"Guten Morgen = Good morning. Guten Tag = Good day, Guten Abend = Good evening."},
+{q:"When do you say “Gute Nacht”?",o:["When you meet someone in the morning","When you arrive at a party","When you say thank you","When someone is going to bed"],a:3,e:"Gute Nacht = Good night. It is used as a farewell before sleeping, not as a greeting."},
+{q:"What does “Auf Wiedersehen” mean?",o:["Goodbye (until we see each other again)","Welcome","Excuse me","See you in the morning"],a:0,e:"Auf Wiedersehen is the standard, polite way to say goodbye."},
+{q:"Which word is an informal way of saying goodbye?",o:["Guten Tag","Tschüss","Bitte","Willkommen"],a:1,e:"Tschüss is casual and used with friends and family. Guten Tag is a greeting, Bitte means please / you’re welcome."},
+{q:"How do you say “Thank you very much” in German?",o:["Bitte schön","Entschuldigung","Vielen Dank","Gern geschehen"],a:2,e:"Vielen Dank = Thank you very much. Bitte schön is the reply (you’re welcome)."},
+{q:"Someone says “Danke!” to you. What is a correct reply?",o:["Hallo","Bitte","Tschüss","Guten Morgen"],a:1,e:"“Bitte” (or “Bitte schön”) means “you’re welcome” as well as “please”."},
+{q:"What does “Ich heiße Anna” mean?",o:["I am from Anna","I like Anna","I am Anna’s friend","My name is Anna"],a:3,e:"Ich heiße … = My name is … (literally “I am called”). You can also say “Ich bin Anna”."},
+{q:"What does “Wie geht’s?” mean?",o:["How are you?","What is your name?","Where are you from?","How old are you?"],a:0,e:"Wie geht’s? (short for Wie geht es dir?) = How are you? Typical answer: Gut, danke!"},
+{q:"Which is the definite article for a masculine noun in the nominative?",o:["die","das","der","ein"],a:2,e:"der = masculine, die = feminine, das = neuter (and die is also used for all plurals)."},
+{q:"Which is the indefinite article for a feminine noun?",o:["ein","eine","einen","der"],a:1,e:"The indefinite article is “ein” for masculine and neuter nouns, and “eine” for feminine nouns."},
+{q:"“Ein” is used as the indefinite article with which genders?",o:["Feminine only","Plural only","Masculine and neuter","Masculine only"],a:2,e:"ein Mann (masculine) and ein Kind (neuter) both use “ein”; feminine uses “eine”. There is no indefinite article in the plural."},
+{q:"Which noun is feminine (die)?",o:["Tisch","Mädchen","Buch","Zeitung"],a:3,e:"Nouns ending in -ung are feminine: die Zeitung. Tisch is der Tisch, Mädchen is das Mädchen, Buch is das Buch."},
+{q:"Nouns ending in -chen (like Mädchen) take which article?",o:["das","der","die","eine"],a:0,e:"The diminutive endings -chen and -lein always make a noun neuter: das Mädchen, das Brötchen."},
+{q:"In an online dictionary, the letter “f” next to a noun means:",o:["The noun is plural","The noun is feminine, so it uses “die”","The noun is formal","The noun is a verb"],a:1,e:"Dictionaries mark gender as m (der), f (die), n (das) and often pl for plural. Always learn a noun together with its article."},
+{q:"What does “Was ist das?” mean?",o:["Who is that?","Where is that?","What is that?","When is that?"],a:2,e:"Was = what, ist = is, das = that/this. Compare with Wer (who), Wo (where), Wann (when)."},
+{q:"Which day comes right after Mittwoch (Wednesday)?",o:["Dienstag","Freitag","Samstag","Donnerstag"],a:3,e:"Order: Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag, Sonntag."},
+{d:"Easy",q:"Which article goes with Mann (man)? ___ Mann",o:["die","der","das","ein"],a:1,e:"Male people are usually masculine: der Mann."},
+{d:"Easy",q:"Which article goes with Frau (woman)? ___ Frau",o:["das","der","die","ein"],a:2,e:"Female people are usually feminine: die Frau."},
+{d:"Easy",q:"Which article goes with Kind (child)? ___ Kind",o:["das","die","der","eine"],a:0,e:"Kind is neuter: das Kind. Gender is not always logical, so learn the article with the noun."},
+{d:"Moderate",q:"Days, months and seasons are all masculine. Which article goes with Montag? ___ Montag",o:["die","das","der","eine"],a:2,e:"Days of the week, months and seasons take der: der Montag, der Januar, der Sommer."},
+{d:"Moderate",q:"Which article goes with Freundlichkeit (friendliness)? ___ Freundlichkeit",o:["der","die","das","ein"],a:1,e:"Nouns ending in -keit, -heit and -ung are always feminine: die Freundlichkeit, die Freiheit, die Zeitung."},
+{d:"Moderate",q:"Which article goes with Museum? ___ Museum",o:["das","der","die","ein"],a:0,e:"Nouns ending in -um are usually neuter: das Museum, das Zentrum, das Datum."},
+{d:"Hard",q:"Which group has the correct article for every noun?",o:["die Frühling, die Freiheit, das Mädchen","der Frühling, der Freiheit, das Mädchen","der Frühling, die Freiheit, die Mädchen","der Frühling, die Freiheit, das Mädchen"],a:3,e:"Seasons are masculine (der Frühling), -heit is feminine (die Freiheit), and -chen is neuter (das Mädchen)."},
+{d:"Hard",q:"Most nouns ending in -e are feminine. Which one is an exception and is masculine?",o:["Lampe","Tasche","Name","Blume"],a:2,e:"der Name is an exception (like der Junge and der Käse). Die Lampe, die Tasche and die Blume follow the -e = feminine rule."},
+{d:"Hard",q:"Haus (das) + Tür (die) = Haustür. Which article does the compound noun take? ___ Haustür",o:["die","das","der","eine"],a:0,e:"A compound noun takes the article of its LAST part: Tür is feminine, so die Haustür."},
+{d:"Hard",q:"Many nouns ending in -er are masculine (der Lehrer, der Computer, der Fahrer). Which noun ending in -er is neuter?",o:["Lehrer","Wetter","Computer","Fahrer"],a:1,e:"das Wetter (weather) is neuter. Lehrer, Computer and Fahrer are all masculine (der)."}
+];
+var LET=["A","B","C","D"],TOTAL=25*60;
+var ans,cur,left,tid,filter;
+var $=function(i){return document.getElementById(i)};
+function show(id){["start","exam","result"].forEach(function(s){$(s).classList.toggle("hidden",s!==id)});window.scrollTo(0,0)}
+
+function start(){ans=new Array(Q.length).fill(-1);cur=0;left=TOTAL;
+  show("exam");render();tick();clearInterval(tid);tid=setInterval(tick,1000)}
+function tick(){
+  var m=Math.floor(left/60),s=left%60;
+  $("timer").textContent=(m<10?"0":"")+m+":"+(s<10?"0":"")+s;
+  $("timer").classList.toggle("low",left<=300);
+  if(left<=0){clearInterval(tid);finish();return}
+  left--}
+function render(){
+  var q=Q[cur];
+  $("count").textContent="Question "+(cur+1)+" of "+Q.length+" · 2 points"+(q.d?" · "+q.d:"");
+  $("pbar").style.width=((cur+1)/Q.length*100)+"%";
+  $("qtext").textContent=(cur+1)+". "+q.q;
+  var h="";
+  q.o.forEach(function(t,i){
+    h+='<button class="opt'+(ans[cur]===i?" sel":"")+'" data-i="'+i+'"><b>'+LET[i]+'.</b><span></span></button>'});
+  $("opts").innerHTML=h;
+  var sp=$("opts").querySelectorAll("span");q.o.forEach(function(t,i){sp[i].textContent=t});
+  $("prev").disabled=cur===0;
+  $("next").disabled=cur===Q.length-1;
+  var p="";
+  Q.forEach(function(_,i){p+='<button data-n="'+i+'" class="'+(ans[i]>=0?"done ":"")+(i===cur?"cur":"")+'">'+(i+1)+'</button>'});
+  $("pal").innerHTML=p;
+  var n=ans.filter(function(a){return a>=0}).length;
+  $("answered").textContent=n+" of "+Q.length+" answered";
+}
+$("opts").onclick=function(e){var b=e.target.closest(".opt");if(!b)return;ans[cur]=+b.dataset.i;render()};
+$("pal").onclick=function(e){var b=e.target.closest("button");if(!b)return;cur=+b.dataset.n;render()};
+$("prev").onclick=function(){if(cur>0){cur--;render()}};
+$("next").onclick=function(){if(cur<Q.length-1){cur++;render()}};
+var uname="";
+$("startBtn").onclick=function(){var n=$("nameIn").value.trim();if(!n){$("nameErr").classList.remove("hidden");$("nameIn").focus();return}$("nameErr").classList.add("hidden");uname=n;start()};
+$("retry").onclick=function(){show("start")};
+
+$("submitBtn").onclick=function(){
+  var un=ans.filter(function(a){return a<0}).length;
+  $("dlgText").textContent=un?("You have "+un+" unanswered question"+(un>1?"s":"")+". Submit anyway?"):"Submit your exam now? You can’t change answers afterwards.";
+  $("dlg").showModal()};
+$("dlgNo").onclick=function(){$("dlg").close()};
+$("dlgYes").onclick=function(){$("dlg").close();clearInterval(tid);finish()};
+
+function finish(){
+  if($("dlg").open)$("dlg").close();
+  var ok=0,no=0,un=0;
+  ans.forEach(function(a,i){if(a<0)un++;else if(a===Q[i].a)ok++;else no++});
+  var pts=ok*2,pc=Math.round(pts/(Q.length*2)*100);
+  $("sc").textContent=pts;
+  var okp=pc>=65;
+  $("rtitle").textContent="Result for "+uname;
+  $("msg").textContent=okp?"🎉 Congratulations, "+uname+"! You are qualified for the next chapters.":"You need to prepare more for the actual exam, "+uname+". Review the explanations below and try again.";
+  $("msg").style.color=okp?"var(--ok)":"var(--bad)";
+  $("s1").textContent="✓ Correct: "+ok;$("s2").textContent="✗ Wrong: "+no;$("s3").textContent="– Unanswered: "+un;$("s4").textContent="Percentage: "+pc+"%";
+  filter="wrong";setF();show("result");
+}
+function setF(){
+  document.querySelectorAll(".filters button").forEach(function(b){b.classList.toggle("on",b.dataset.f===filter)});
+  var box=$("review");box.innerHTML="";var shown=0;
+  Q.forEach(function(q,i){
+    var good=ans[i]===q.a;
+    if(filter==="wrong"&&good)return;
+    shown++;
+    var d=document.createElement("div");d.className="card rev "+(good?"ok":"no");
+    var t=document.createElement("div");
+    t.innerHTML='<span class="tag '+(good?"ok":"no")+'">'+(good?"Correct · +2":ans[i]<0?"Unanswered · 0":"Wrong · 0")+'</span>';
+    var p=document.createElement("p");p.className="q";p.style.margin="10px 0 6px";p.textContent=(i+1)+". "+q.q;
+    d.appendChild(t);d.appendChild(p);
+    if(!good&&ans[i]>=0){var y=document.createElement("div");y.className="ans no";y.textContent="Your answer: "+LET[ans[i]]+". "+q.o[ans[i]];d.appendChild(y)}
+    var c=document.createElement("div");c.className="ans ok";c.textContent="Correct answer: "+LET[q.a]+". "+q.o[q.a];d.appendChild(c);
+    var x=document.createElement("div");x.className="exp";x.textContent="💡 "+q.e;d.appendChild(x);
+    box.appendChild(d)});
+  if(!shown){box.innerHTML='<div class="card score">🎉 Perfect score – no wrong answers!</div>'}
+}
+document.querySelector(".filters").onclick=function(e){var b=e.target.closest("button");if(!b)return;filter=b.dataset.f;setF()};
+window.addEventListener("beforeunload",function(e){if(!$("exam").classList.contains("hidden")){e.preventDefault();e.returnValue=""}});
+</script>
+</body>
+</html>
